@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faceless Videos Playbook — sell AI courses without showing your face</title>
+  <meta name="description" content="A practical playbook for making faceless Reels, Shorts and YouTube videos that sell AI engineering courses to Indian college students." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0b1210;
+      --panel: #121c18;
+      --line: rgba(232, 244, 236, 0.12);
+      --text: #e8f4ec;
+      --muted: #9db5a6;
+      --lime: #b6f24a;
+      --amber: #ffb020;
+      --teal: #2dd4bf;
+      --max: 68rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(182, 242, 74, 0.14), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 90% 0%, rgba(45, 212, 191, 0.12), transparent 50%),
+        linear-gradient(180deg, #07100d 0%, var(--ink) 40%, #0a1411 100%);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    header.site {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.05rem;
+    }
+    .brand span { color: var(--lime); }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      margin-left: 1.1rem;
+    }
+    nav a:hover { color: var(--text); }
+
+    .hero {
+      min-height: calc(100vh - 4.5rem);
+      display: grid;
+      align-content: center;
+      padding: 2rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 8% -5% auto auto;
+      width: min(52vw, 34rem);
+      height: min(52vw, 34rem);
+      border-radius: 50%;
+      background:
+        conic-gradient(from 210deg, rgba(182, 242, 74, 0.2), transparent 35%, rgba(45, 212, 191, 0.18), transparent 70%);
+      filter: blur(8px);
+      animation: spinSlow 28s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spinSlow {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero > * { animation: rise 0.7s ease both; }
+    .hero h1 { animation-delay: 0.08s; }
+    .hero .lead { animation-delay: 0.16s; }
+    .hero .cta { animation-delay: 0.24s; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { font-family: Syne, sans-serif; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 800;
+      max-width: 14ch;
+      margin: 0 0 1.1rem;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .lead {
+      max-width: 38rem;
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin: 0 0 1.75rem;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.85rem 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--lime);
+      color: #0b1210;
+    }
+    .btn-ghost {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    section {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin: 0 0 0.75rem;
+      max-width: 18ch;
+    }
+    .sub {
+      color: var(--muted);
+      max-width: 40rem;
+      margin: 0 0 2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    }
+
+    .step, .tool, .script {
+      background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      padding: 1.25rem 1.3rem;
+      transition: border-color 0.2s ease, transform 0.25s ease;
+    }
+    .step:hover, .tool:hover, .script:hover {
+      border-color: rgba(182, 242, 74, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .num {
+      font-family: Syne, sans-serif;
+      font-size: 2rem;
+      color: var(--amber);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .step h3, .tool h3, .script h3 {
+      margin: 0 0 0.45rem;
+      font-size: 1.15rem;
+    }
+    .step p, .tool p, .script p, .step li, ol.flow li {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    ol.flow {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+    }
+    ol.flow li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      align-items: start;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(18, 28, 24, 0.7);
+    }
+    ol.flow strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+    .badge {
+      font-family: Syne, sans-serif;
+      font-size: 0.75rem;
+      color: var(--ink);
+      background: var(--teal);
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      font-weight: 700;
+    }
+
+    pre {
+      margin: 1rem 0 0;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      border-radius: 0.85rem;
+      background: #050a08;
+      border: 1px solid var(--line);
+      color: #d7f0de;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .checklist li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+    .checklist li::before {
+      content: "";
+      width: 0.7rem;
+      height: 0.7rem;
+      margin-top: 0.35rem;
+      border-radius: 2px;
+      background: var(--lime);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(182, 242, 74, 0.15);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--lime); }
+
+    @media (max-width: 720px) {
+      nav { display: none; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="site">
+      <div class="brand">Faceless <span>Playbook</span></div>
+      <nav>
+        <a href="#stack">Stack</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#scripts">Scripts</a>
+        <a href="#publish">Publish</a>
+      </nav>
+    </header>
+
+    <section class="hero" style="border:0;padding-top:1rem">
+      <p class="eyebrow">For BeyondPlaced / campus AI courses</p>
+      <h1>Make <em>faceless</em> videos that sell the course.</h1>
+      <p class="lead">
+        You do not need to be on camera. You need a tight hook, a calm AI voice, screen or B-roll visuals,
+        and captions. This page is the production recipe for Reels, Shorts and YouTube that send college
+        students to Module 1.
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#pipeline">Open the pipeline</a>
+        <a class="btn btn-ghost" href="#scripts">Steal a script</a>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>Why faceless works for this product</h2>
+      <p class="sub">College buyers care about the skill win, not your face. Faceless keeps shipping fast and on-brand.</p>
+      <div class="grid">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Students skim, they do not binge</h3>
+          <p>30–45s hooks about RAG, placements or “no maths panic” beat long founder intros.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Code is the visual</h3>
+          <p>Terminal, VS Code, Notion roadmaps and project demos are more credible than talking heads.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>One editor can batch a week</h3>
+          <p>Write 7 scripts Monday, voice them Tuesday, edit Wednesday. Consistency sells more than charisma.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>Tool stack (cheap and enough)</h2>
+      <p class="sub">Pick one tool per row. Free tiers cover the first 50 videos.</p>
+      <div class="grid">
+        <div class="tool">
+          <h3>Script</h3>
+          <p>Notion or Google Docs. One idea → hook → 3 beats → CTA. Keep every short under 110 words.</p>
+        </div>
+        <div class="tool">
+          <h3>Voice</h3>
+          <p>ElevenLabs or CapCut TTS. Warm, mid male/female Indian-friendly voice. Speed 1.05–1.1.</p>
+        </div>
+        <div class="tool">
+          <h3>Visuals</h3>
+          <p>Screen recordings (OBS / Loom), CapCut stock, Pexels campus/coding clips, Canva kinetic text.</p>
+        </div>
+        <div class="tool">
+          <h3>Edit + captions</h3>
+          <p>CapCut auto captions → fix names (LLM, RAG, LoRA). Burn-in large captions for mute scrollers.</p>
+        </div>
+        <div class="tool">
+          <h3>Music</h3>
+          <p>CapCut copyright-safe beds at −18 to −22 dB under voice. No lyric tracks.</p>
+        </div>
+        <div class="tool">
+          <h3>Thumbnail / cover</h3>
+          <p>Bold Syne-style title, one code snippet, lime accent. Same template every post = brand memory.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pipeline">
+      <h2>Production pipeline</h2>
+      <p class="sub">Same loop every time. Do not invent a new format mid-week.</p>
+      <ol class="flow">
+        <li>
+          <span class="badge">1</span>
+          <div>
+            <strong>Pick one buyer pain</strong>
+            Placements, FOMO about AI jobs, “ML maths panic”, “YouTube never ends”, “no projects on resume”.
+          </div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div>
+            <strong>Write the hook in one line</strong>
+            First 1.5 seconds must stop the thumb. Pattern: bold claim + specific skill (“Your PDF chatbot is a RAG app”).
+          </div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div>
+            <strong>Generate voice, then visuals</strong>
+            Voice first locks timing. Cut screen demos and B-roll to the audio, not the other way around.
+          </div>
+        </li>
+        <li>
+          <span class="badge">4</span>
+          <div>
+            <strong>Captions + end card</strong>
+            Big captions. Last 3 seconds: “Module 1 free” + link in bio / BeyondPlaced URL.
+          </div>
+        </li>
+        <li>
+          <span class="badge">5</span>
+          <div>
+            <strong>Post daily, recycle winners</strong>
+            Turn a winning Reel into a 3–5 min YouTube Shorts compilation or a carousel script.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="scripts">
+      <h2>Steal these scripts</h2>
+      <p class="sub">Paste into CapCut TTS. Swap the CTA URL when you publish.</p>
+      <div class="grid">
+        <div class="script">
+          <h3>Reel · 35s · Placement fear</h3>
+          <pre>Stop collecting AI certificates.
+Recruiters open GitHub, not PDFs.
+
+In 12 weeks you can ship:
+a PDF chatbot with citations,
+a resume-screening agent,
+and a live AI API.
+
+BeyondPlaced Module 1 is free.
+No card. First LLM call today.</pre>
+        </div>
+        <div class="script">
+          <h3>Reel · 40s · Myth bust</h3>
+          <pre>You do not need a maths degree
+to become an AI engineer.
+
+You need:
+Python loops,
+calling an LLM API,
+retrieval, agents, and deploy.
+
+That is the whole stack.
+Start free on BeyondPlaced.</pre>
+        </div>
+        <div class="script">
+          <h3>YouTube · 60s · Topic teaser</h3>
+          <pre>RAG is the skill in every AI job post.
+
+Chunk docs. Embed. Retrieve. Generate with citations.
+If your chatbot cannot show sources, it is a toy.
+
+We teach the full pipeline in Module 3,
+and you build Chat-with-your-PDF for your portfolio.
+
+Link in description — Module 1 free.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="shotlist">
+      <h2>Shot list that never needs a face</h2>
+      <p class="sub">Film once, reuse forever. Keep a folder of these clips.</p>
+      <ul class="checklist">
+        <li>VS Code typing a `chat.completions.create` call (speed ramped 1.5×)</li>
+        <li>Terminal streaming tokens / FastAPI logs</li>
+        <li>Browser: BeyondPlaced lesson player + quiz pass state</li>
+        <li>Notion or Figma roadmap of 6 modules animating in</li>
+        <li>Phone screen: LinkedIn “AI Engineer” job post highlighted</li>
+        <li>GitHub repo stars / README of a sample portfolio project</li>
+        <li>Hand writing “₹2,999” vs “coaching fees” on paper (overhead)</li>
+        <li>Campus B-roll: laptop on desk, library, corridor (stock is fine)</li>
+      </ul>
+    </section>
+
+    <section id="publish">
+      <h2>Publish rules</h2>
+      <p class="sub">Distribution beats polish after video #10.</p>
+      <div class="grid">
+        <div class="step">
+          <div class="num">IG / YT</div>
+          <h3>Cadence</h3>
+          <p>1 Reel or Short daily for 30 days. Same niche every time: AI eng for Indian students.</p>
+        </div>
+        <div class="step">
+          <div class="num">CTA</div>
+          <h3>One link only</h3>
+          <p>Bio → BeyondPlaced Module 1. Do not split traffic across 4 products.</p>
+        </div>
+        <div class="step">
+          <div class="num">KPI</div>
+          <h3>Measure the sale</h3>
+          <p>Track saves + profile visits + free signups. Ignore vanity likes until signups move.</p>
+        </div>
+      </div>
+      <pre style="margin-top:1.5rem">Weekly batch checklist
+[ ] 7 hooks written
+[ ] 7 voiceovers exported (wav)
+[ ] 7 rough cuts with captions
+[ ] Thumbnails / first-frame text checked on mute
+[ ] Posts scheduled (CapCut / Meta / YouTube Studio)
+[ ] Top comment pinned: “Module 1 free → link in bio”</pre>
+    </section>
+
+    <section id="beyond">
+      <h2>Tie every video to the product</h2>
+      <p class="sub">Faceless content is top-of-funnel. BeyondPlaced closes the loop with free Module 1, quizzes, paywall and Razorpay.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://ai-cademy-bice.vercel.app" target="_blank" rel="noopener">Open BeyondPlaced</a>
+        <a class="btn btn-ghost" href="https://ai-cademy-bice.vercel.app/learn/how-llms-work" target="_blank" rel="noopener">Start Module 1 free</a>
+      </div>
+    </section>
+
+    <footer>
+      Faceless Videos Playbook · for shipping BeyondPlaced content without a camera face.
+      Source: <a href="https://github.com/Tarun-Gudapati/faceless-videos">github.com/Tarun-Gudapati/faceless-videos</a>
+    </footer>
+  </div>
+</body>
+</html>
